@@ -13,28 +13,28 @@ import java.util.Objects;
 public class Availability extends BaseEntity {
 
     @Column(name = "room_number", length = 3, nullable = false)
-    public int roomNumber;
+    private int roomNumber;
 
     @Column(name = "from_date", length = 10, nullable = false)
     @Temporal(TemporalType.DATE)
-    public Date fromDate;
+    private Date fromDate;
 
     @Column(name = "to_date", length = 10, nullable = false)
     @Temporal(TemporalType.DATE)
-    public Date toDate;
+    private Date toDate;
 
     @Column(name = "room_type", length = 10, nullable = true)
-    public RoomType roomType;
+    private RoomType roomType;
 
     @Column(name = "price_double", length = 5, nullable = false)
-    public BigDecimal priceDouble;
+    private BigDecimal priceDouble;
 
     @Column(name = "price_single", length = 5, nullable = false)
-    public BigDecimal priceSingle;
+    private BigDecimal priceSingle;
 
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
-    public Property property;
+    private Property property;
 
     public int getRoomNumber() {
         return roomNumber;
