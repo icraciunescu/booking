@@ -19,8 +19,8 @@ public class Booking extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date checkOut;
 
-    @Column(name = "number_of_person", length = 3, nullable = false)
-    private int numberOfPerson;
+    @Column(name = "number_of_persons", length = 3, nullable = false)
+    private int numberOfPersons;
 
     @Column(name = "number_of_rooms", length = 3, nullable = false)
     private int numberOfRooms;
@@ -57,12 +57,12 @@ public class Booking extends BaseEntity {
         this.checkOut = checkOut;
     }
 
-    public int getNumberOfPerson() {
-        return numberOfPerson;
+    public int getNumberOfPersons() {
+        return numberOfPersons;
     }
 
-    public void setNumberOfPerson(int numberOfPerson) {
-        this.numberOfPerson = numberOfPerson;
+    public void setNumberOfPersons(int numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
     }
 
     public int getNumberOfRooms() {
@@ -110,7 +110,7 @@ public class Booking extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return numberOfPerson == booking.numberOfPerson &&
+        return numberOfPersons == booking.numberOfPersons &&
                 numberOfRooms == booking.numberOfRooms &&
                 Objects.equals(checkIn, booking.checkIn) &&
                 Objects.equals(checkOut, booking.checkOut) &&
@@ -122,7 +122,7 @@ public class Booking extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(checkIn, checkOut, numberOfPerson, numberOfRooms, roomType, client, property, availability);
+        return Objects.hash(checkIn, checkOut, numberOfPersons, numberOfRooms, roomType, client, property, availability);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class Booking extends BaseEntity {
         return "Booking{" +
                 "checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
-                ", numberOfPerson=" + numberOfPerson +
+                ", numberOfPersons=" + numberOfPersons +
                 ", numberOfRooms=" + numberOfRooms +
                 ", roomType=" + roomType +
                 ", client=" + client +
