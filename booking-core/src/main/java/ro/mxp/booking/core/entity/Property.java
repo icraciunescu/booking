@@ -13,17 +13,17 @@ public class Property extends BaseEntity {
     public String name;
 
     @Column(name = "mail", length = 45, nullable = true)
-    public String mail;
+    private String mail;
 
     @Column(name = "phone", length = 15, nullable = true)
-    public String phone;
+    private String phone;
 
     @Column(name = "adress", length = 45, nullable = false)
-    public String adress;
+    private String adress;
 
     @ManyToOne
     @JoinColumn(name = "host_id", nullable = false)
-    public Host host;
+    private Host host;
 
     public String getName() {
         return name;
