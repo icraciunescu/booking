@@ -1,5 +1,6 @@
 package ro.mxp.booking.core.service;
 
+import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.mxp.booking.core.entity.Client;
@@ -29,7 +30,7 @@ public class ClientServiceImplementation implements ClientService {
     }
 
     @Override
-    public Client updateClient(Client client) {
+    public Client updateClient(@NotNull Client client) {
         Client clientFromDb = clientRepository.findOne(client.getId());
         return clientRepository.save(clientFromDb);
     }
