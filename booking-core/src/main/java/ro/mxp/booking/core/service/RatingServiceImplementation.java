@@ -1,6 +1,6 @@
 package ro.mxp.booking.core.service;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.mxp.booking.core.entity.Rating;
