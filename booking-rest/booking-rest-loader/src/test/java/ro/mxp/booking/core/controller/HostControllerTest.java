@@ -75,14 +75,12 @@ public class HostControllerTest {
     public void testDeleteHost() {
         List<Host> hostList = hostController.getAllHost();
         int actual = hostList.size();
-        Host host = new Host();
-        host.setName("hostForTest");
-        host.setMail("hostForTest@testhost.com");
-        hostController.createHost(host);
+        Host hostFromDb = hostController.getHostById(1);
+        hostController.deleteHost(hostFromDb);
         List<Host> hostList2 = hostController.getAllHost();
         int expected = hostList2.size();
         System.out.println(hostList2.toString());
-        Assert.assertEquals(expected, actual + 1);
+        Assert.assertEquals(expected, actual - 1);
     }
 
 }
