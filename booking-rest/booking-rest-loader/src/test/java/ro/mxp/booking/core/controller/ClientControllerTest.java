@@ -20,7 +20,7 @@ public class ClientControllerTest {
 
     @Autowired
     @Qualifier("clientController")
-    public ClientController clientController;
+    private ClientController clientController;
 
     @Test
     @Rollback
