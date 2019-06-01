@@ -109,7 +109,7 @@ public class RatingControllerTest {
     public void testUpdateRating() {
         Rating ratingFromDb = ratingController.getRatingById(1);
         ratingFromDb.setComment("newComment");
-        ratingController.createRating(ratingFromDb);
+        ratingController.updateRating(ratingFromDb);
         String actual = ratingFromDb.getComment();
         String expected = "newComment";
         System.out.println(ratingFromDb.toString());
