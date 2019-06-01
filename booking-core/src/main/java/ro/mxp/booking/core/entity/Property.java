@@ -18,8 +18,8 @@ public class Property extends BaseEntity {
     @Column(name = "phone", length = 15, nullable = true)
     private String phone;
 
-    @Column(name = "adress", length = 45, nullable = false)
-    private String adress;
+    @Column(name = "address", length = 45, nullable = false)
+    private String address;
 
     @ManyToOne
     @JoinColumn(name = "host_id", nullable = false)
@@ -49,12 +49,12 @@ public class Property extends BaseEntity {
         this.phone = phone;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Host getHost() {
@@ -73,13 +73,13 @@ public class Property extends BaseEntity {
         return Objects.equals(name, property.name) &&
                 Objects.equals(mail, property.mail) &&
                 Objects.equals(phone, property.phone) &&
-                Objects.equals(adress, property.adress) &&
+                Objects.equals(address, property.address) &&
                 Objects.equals(host, property.host);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, mail, phone, adress, host);
+        return Objects.hash(name, mail, phone, address, host);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Property extends BaseEntity {
                 "name='" + name + '\'' +
                 ", mail='" + mail + '\'' +
                 ", phone='" + phone + '\'' +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 ", host=" + host +
                 '}';
     }

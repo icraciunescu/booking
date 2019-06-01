@@ -32,7 +32,7 @@ public class PropertyControllerTest {
     public void testCreateProperty() {
         Property property = new Property();
         property.setName("propertyName");
-        property.setAdress("propertyAdress");
+        property.setAddress("propertyAdress");
         property.setMail("property@property.com");
         property.setPhone("0000123456");
         Host host = new Host();
@@ -62,7 +62,7 @@ public class PropertyControllerTest {
         int actual = propertyList.size();
         Property property = new Property();
         property.setName("propertyName");
-        property.setAdress("propertyAdress");
+        property.setAddress("propertyAdress");
         property.setPhone("0000000123");
         property.setMail("property@property.com");
         Host host = new Host();
