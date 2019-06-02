@@ -24,7 +24,7 @@ public class Availability extends BaseEntity {
     private Date toDate;
 
     @Column(name = "room_type", length = 10, nullable = true)
-    private RoomType roomType;
+    private String roomType;
 
     @Column(name = "price_double", length = 5, nullable = false)
     private BigDecimal priceDouble;
@@ -60,11 +60,11 @@ public class Availability extends BaseEntity {
         this.toDate = toDate;
     }
 
-    public RoomType getRoomType() {
+    public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(RoomType roomType) {
+    public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
@@ -100,7 +100,7 @@ public class Availability extends BaseEntity {
         return roomNumber == that.roomNumber &&
                 Objects.equals(fromDate, that.fromDate) &&
                 Objects.equals(toDate, that.toDate) &&
-                roomType == that.roomType &&
+                Objects.equals(roomType, that.roomType) &&
                 Objects.equals(priceDouble, that.priceDouble) &&
                 Objects.equals(priceSingle, that.priceSingle) &&
                 Objects.equals(property, that.property);
@@ -117,7 +117,7 @@ public class Availability extends BaseEntity {
                 "roomNumber=" + roomNumber +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
-                ", roomType=" + roomType +
+                ", roomType='" + roomType + '\'' +
                 ", priceDouble=" + priceDouble +
                 ", priceSingle=" + priceSingle +
                 ", property=" + property +
