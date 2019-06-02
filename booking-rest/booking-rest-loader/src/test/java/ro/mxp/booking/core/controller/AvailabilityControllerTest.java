@@ -37,7 +37,7 @@ public class AvailabilityControllerTest {
     private PropertyController propertyController;
 
     @Test
-    @Rollback
+    @Rollback(false)
     public void testCreateAvailability() {
         Availability availability = new Availability();
         Calendar calendar = Calendar.getInstance();

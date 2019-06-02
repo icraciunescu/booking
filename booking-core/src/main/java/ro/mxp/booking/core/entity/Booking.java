@@ -1,7 +1,6 @@
 package ro.mxp.booking.core.entity;
 
 import ro.mxp.booking.core.base.BaseEntity;
-import ro.mxp.booking.core.enums.RoomType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,8 +25,7 @@ public class Booking extends BaseEntity {
     private int numberOfRooms;
 
     @Column(name = "room_type", length = 10, nullable = false)
-    @Enumerated
-    private RoomType roomType;
+    private String roomType;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
@@ -73,11 +71,11 @@ public class Booking extends BaseEntity {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public RoomType getRoomType() {
+    public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(RoomType roomType) {
+    public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
@@ -114,7 +112,7 @@ public class Booking extends BaseEntity {
                 numberOfRooms == booking.numberOfRooms &&
                 Objects.equals(checkIn, booking.checkIn) &&
                 Objects.equals(checkOut, booking.checkOut) &&
-                roomType == booking.roomType &&
+                Objects.equals(roomType, booking.roomType) &&
                 Objects.equals(client, booking.client) &&
                 Objects.equals(property, booking.property) &&
                 Objects.equals(availability, booking.availability);
@@ -132,7 +130,7 @@ public class Booking extends BaseEntity {
                 ", checkOut=" + checkOut +
                 ", numberOfPersons=" + numberOfPersons +
                 ", numberOfRooms=" + numberOfRooms +
-                ", roomType=" + roomType +
+                ", roomType='" + roomType + '\'' +
                 ", client=" + client +
                 ", property=" + property +
                 ", availability=" + availability +

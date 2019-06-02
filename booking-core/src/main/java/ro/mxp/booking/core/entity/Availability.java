@@ -1,7 +1,6 @@
 package ro.mxp.booking.core.entity;
 
 import ro.mxp.booking.core.base.BaseEntity;
-import ro.mxp.booking.core.enums.RoomType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
