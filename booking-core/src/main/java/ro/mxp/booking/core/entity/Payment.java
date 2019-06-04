@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Payment extends BaseEntity {
 
     @Column(name = "amount", length = 10)
-    private BigDecimal amounth;
+    private BigDecimal amount;
 
     @Column(name = "payment_date", length = 10)
     @Temporal(TemporalType.DATE)
@@ -22,12 +22,12 @@ public class Payment extends BaseEntity {
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
 
-    public BigDecimal getAmounth() {
-        return amounth;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAmounth(BigDecimal amounth) {
-        this.amounth = amounth;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public Date getPaymentDate() {
@@ -51,20 +51,20 @@ public class Payment extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-        return Objects.equals(amounth, payment.amounth) &&
+        return Objects.equals(amount, payment.amount) &&
                 Objects.equals(paymentDate, payment.paymentDate) &&
                 Objects.equals(booking, payment.booking);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amounth, paymentDate, booking);
+        return Objects.hash(amount, paymentDate, booking);
     }
 
     @Override
     public String toString() {
         return "Payment{" +
-                "amounth=" + amounth +
+                "amount=" + amount +
                 ", paymentDate=" + paymentDate +
                 ", booking=" + booking +
                 '}';
