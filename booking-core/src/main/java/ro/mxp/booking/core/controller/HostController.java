@@ -29,8 +29,8 @@ public class HostController {
         return hostService.updateHost(host);
     }
 
-    public void deleteHost(Host host) {
-        hostService.deleteHost(host);
+    public void deleteHost(int id) {
+        hostService.deleteHost(id);
     }
 
 }

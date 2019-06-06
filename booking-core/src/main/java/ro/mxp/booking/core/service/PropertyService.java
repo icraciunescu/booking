@@ -10,6 +10,6 @@ public interface PropertyService {
     Property getPropertyById(int id);
     List getAllProperty();
     Property updateProperty(Property property);
-    void deleteProperty(Property property);
+    void deleteProperty(int id);
 
 }

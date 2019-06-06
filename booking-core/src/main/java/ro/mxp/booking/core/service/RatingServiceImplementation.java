@@ -36,8 +36,8 @@ public class RatingServiceImplementation implements RatingService {
     }
 
     @Override
-    public void deleteRating(Rating rating) {
-        ratingRepository.delete(rating);
+    public void deleteRating(int id) {
+        ratingRepository.delete(id);
     }
 
 }

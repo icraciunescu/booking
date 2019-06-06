@@ -36,8 +36,8 @@ public class HostServiceImplementation implements HostService {
     }
 
     @Override
-    public void deleteHost(Host host) {
-        hostRepository.delete(host);
+    public void deleteHost(int id) {
+        hostRepository.delete(id);
     }
 
 }

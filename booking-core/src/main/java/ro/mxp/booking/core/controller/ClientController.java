@@ -29,8 +29,8 @@ public class ClientController {
         return clientService.updateClient(client);
     }
 
-    public void deleteClient(Client client) {
-        clientService.deleteClient(client);
+    public void deleteClient(int id) {
+        clientService.deleteClient(id);
     }
 
 }

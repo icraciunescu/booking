@@ -128,8 +128,7 @@ public class PaymentControllerTest {
     public void testGetAllPayment() {
         List<Payment> paymentList = paymentController.getAllPayment();
         int actual = paymentList.size();
-        Payment payment = paymentController.getPaymentById(1);
-        paymentController.deletePayment(payment);
+        paymentController.deletePayment(2);
         List<Payment> paymentList2 = paymentController.getAllPayment();
         int expected = paymentList2.size() + 1;
         System.out.println(paymentList2.toString());
@@ -153,8 +152,7 @@ public class PaymentControllerTest {
     public void testDeletePayment() {
         List<Payment> paymentList = paymentController.getAllPayment();
         int actual = paymentList.size();
-        Payment payment = paymentController.getPaymentById(1);
-        paymentController.deletePayment(payment);
+        paymentController.deletePayment(2);
         List<Payment> paymentList2 = paymentController.getAllPayment();
         int expected = paymentList2.size() + 1;
         System.out.println(paymentList2.toString());

@@ -10,6 +10,6 @@ public interface BookingService {
     Booking getBookingById(int id);
     List getAllBooking();
     Booking updateBooking(Booking booking);
-    void deleteBooking(Booking booking);
+    void deleteBooking(int id);
 
 }

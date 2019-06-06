@@ -10,6 +10,6 @@ public interface RatingService {
     Rating getRatingById(int id);
     List getAllRating();
     Rating updateRating(Rating rating);
-    void deleteRating(Rating rating);
+    void deleteRating(int id);
 
 }

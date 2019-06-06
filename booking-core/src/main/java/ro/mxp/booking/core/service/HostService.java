@@ -10,6 +10,6 @@ public interface HostService {
     Host getHostById(int id);
     List getAllHost();
     Host updateHost(Host host);
-    void deleteHost(Host host);
+    void deleteHost(int id);
 
 }

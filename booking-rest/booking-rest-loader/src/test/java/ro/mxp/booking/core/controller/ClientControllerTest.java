@@ -77,13 +77,14 @@ public class ClientControllerTest {
     @Test
     @Rollback
     public void testDeleteClient() {
-        List<Client> clients = clientController.getAllClient();
-        int actual = clients.size();
-        Client clientFromDb = clientController.getClientById(3);
-        clientController.deleteClient(clientFromDb);
-        List<Client> clients2 = clientController.getAllClient();
-        int expected = clients2.size();
-        Assert.assertEquals(expected, actual - 1);
+        List<Client> clientList = clientController.getAllClient();
+        int actual = clientList.size();
+        clientController.deleteClient(7);
+        List<Client> clientList2 = clientController.getAllClient();
+        int expected = clientList2.size() + 1;
+        System.out.println(actual);
+        System.out.println(expected);
+        Assert.assertEquals(expected, actual);
     }
 
 }

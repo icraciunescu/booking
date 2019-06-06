@@ -10,6 +10,6 @@ public interface ClientService {
     Client getClientById(int id);
     List getAllClient();
     Client updateClient(Client client);
-    void deleteClient(Client client);
+    void deleteClient(int id);
 
 }

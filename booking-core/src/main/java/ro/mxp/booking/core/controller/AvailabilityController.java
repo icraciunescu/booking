@@ -29,8 +29,8 @@ public class AvailabilityController {
         return availabilityService.updateAvailability(availability);
     }
 
-    public void deleteAvailability(Availability availability) {
-        availabilityService.deleteAvailability(availability);
+    public void deleteAvailability(int id) {
+        availabilityService.deleteAvailability(id);
     }
 
 }

@@ -115,8 +115,7 @@ public class BookingControllerTest {
     public void testGetAllBooking() {
         List<Booking> bookingList = bookingController.getAllBooking();
         int actual = bookingList.size();
-        Booking booking = bookingController.getBookingById(1);
-        bookingController.deleteBooking(booking);
+        bookingController.deleteBooking(4);
         List<Booking> bookingList2 = bookingController.getAllBooking();
         int expected = bookingList2.size() + 1;
         System.out.println(bookingList2.toString());
@@ -140,8 +139,7 @@ public class BookingControllerTest {
     public void testDeleteBooking() {
         List<Booking> bookingList = bookingController.getAllBooking();
         int actual = bookingList.size();
-        Booking booking = bookingController.getBookingById(1);
-        bookingController.deleteBooking(booking);
+        bookingController.deleteBooking(4);
         List<Booking> bookingList2 = bookingController.getAllBooking();
         int expected = bookingList2.size() + 1;
         System.out.println(bookingList2.toString());

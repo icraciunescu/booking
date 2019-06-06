@@ -36,8 +36,8 @@ public class PropertyServiceImplementation implements PropertyService {
     }
 
     @Override
-    public void deleteProperty(Property property) {
-        propertyRepository.delete(property);
+    public void deleteProperty(int id) {
+        propertyRepository.delete(id);
     }
 
 }

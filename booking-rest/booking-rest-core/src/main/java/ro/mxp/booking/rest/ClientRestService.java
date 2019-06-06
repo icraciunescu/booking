@@ -49,8 +49,8 @@ public class ClientRestService {
     @Path("/delete")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public void deleteClient(Client client) {
-        clientService.deleteClient(client);
+    public void deleteClient(@QueryParam("clientId") int id) {
+        clientService.deleteClient(id);
     }
 
 }

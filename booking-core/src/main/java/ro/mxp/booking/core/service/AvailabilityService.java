@@ -10,6 +10,6 @@ public interface AvailabilityService {
     Availability getAvailabilityById(int id);
     List getAllAvailability();
     Availability updateAvailability(Availability availability);
-    void deleteAvailability(Availability availability);
+    void deleteAvailability(int id);
 
 }

@@ -37,7 +37,7 @@ public class AvailabilityControllerTest {
     private PropertyController propertyController;
 
     @Test
-    @Rollback(false)
+    @Rollback
     public void testCreateAvailability() {
         Availability availability = new Availability();
         Calendar calendar = Calendar.getInstance();
@@ -86,8 +86,7 @@ public class AvailabilityControllerTest {
     public void testGetAllAvailability() {
         List<Availability> availabilityList = availabilityController.getAllAvailability();
         int actual = availabilityList.size();
-        Availability availability = availabilityController.getAvailabilityById(2);
-        availabilityController.deleteAvailability(availability);
+        availabilityController.deleteAvailability(5);
         List<Availability> availabilityList2 = availabilityController.getAllAvailability();
         int expected = availabilityList2.size() + 1;
         System.out.println(availabilityList2.toString());
@@ -111,8 +110,7 @@ public class AvailabilityControllerTest {
     public void testDeleteAvailability() {
         List<Availability> availabilityList = availabilityController.getAllAvailability();
         int actual = availabilityList.size();
-        Availability availability = availabilityController.getAvailabilityById(2);
-        availabilityController.deleteAvailability(availability);
+        availabilityController.deleteAvailability(5);
         List<Availability> availabilityList2 = availabilityController.getAllAvailability();
         int expected = availabilityList2.size() + 1;
         System.out.println(availabilityList2.toString());

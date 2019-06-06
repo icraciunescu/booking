@@ -10,6 +10,6 @@ public interface PaymentService {
     Payment getPaymentById(int id);
     List getAllPayment();
     Payment updatePayment(Payment payment);
-    void deletePayment(Payment payment);
+    void deletePayment(int id);
 
 }

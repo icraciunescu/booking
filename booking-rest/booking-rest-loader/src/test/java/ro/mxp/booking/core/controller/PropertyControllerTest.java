@@ -94,8 +94,7 @@ public class PropertyControllerTest {
     public void testDeleteProperty() {
         List<Property> propertyList = propertyController.getAllProperty();
         int actual = propertyList.size();
-        Property property = propertyController.getPropertyById(2);
-        propertyController.deleteProperty(property);
+        propertyController.deleteProperty(6);
         List<Property> propertyList2 = propertyController.getAllProperty();
         int expected = propertyList2.size() + 1;
         System.out.println(propertyList2.toString());

@@ -121,8 +121,7 @@ public class RatingControllerTest {
     public void testDeleteRating() {
         List<Rating> ratingList = ratingController.getAllRating();
         int actual = ratingList.size();
-        Rating rating = ratingController.getRatingById(1);
-        ratingController.deleteRating(rating);
+        ratingController.deleteRating(2);
         List<Rating> ratingList2 = ratingController.getAllRating();
         int expected = ratingList2.size() + 1;
         System.out.println(ratingList2.toString());

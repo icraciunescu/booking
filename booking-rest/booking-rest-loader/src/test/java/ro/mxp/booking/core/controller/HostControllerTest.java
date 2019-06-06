@@ -71,12 +71,11 @@ public class HostControllerTest {
     }
 
     @Test
-    @Rollback
+    @Rollback(false)
     public void testDeleteHost() {
         List<Host> hostList = hostController.getAllHost();
         int actual = hostList.size();
-        Host hostFromDb = hostController.getHostById(1);
-        hostController.deleteHost(hostFromDb);
+        hostController.deleteHost(5);
         List<Host> hostList2 = hostController.getAllHost();
         int expected = hostList2.size();
         System.out.println(hostList2.toString());

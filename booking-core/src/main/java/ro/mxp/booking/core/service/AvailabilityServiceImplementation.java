@@ -36,8 +36,8 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
     }
 
     @Override
-    public void deleteAvailability(Availability availability) {
-        availabilityRepository.delete(availability);
+    public void deleteAvailability(int id) {
+        availabilityRepository.delete(id);
     }
 
 }
