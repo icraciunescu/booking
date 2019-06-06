@@ -38,7 +38,7 @@ public class RatingControllerTest {
     private HostController hostController;
 
     @Test
-    @Rollback
+    @Rollback(false)
     public void testCreateRating() {
         Rating rating = new Rating();
         rating.setComment("commentTest");
@@ -52,6 +52,7 @@ public class RatingControllerTest {
         property.setName("propertyName");
         property.setAddress("propertyAddress");
         property.setMail("property@property.com");
+        property.setPhone("1234567899");
         Host host = new Host();
         host.setName("hostName");
         host.setMail("host@host.com");
