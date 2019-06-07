@@ -2,8 +2,8 @@ package ro.mxp.booking.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.mxp.booking.core.controller.AvailabilityController;
 import ro.mxp.booking.core.entity.Availability;
-import ro.mxp.booking.core.service.AvailabilityService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,31 +11,31 @@ import java.util.List;
 
 @Service
 @Path("/availability")
-public class AvailabilityRestService {
+public class AvailabilityRestController {
 
     @Autowired
-    private AvailabilityService availabilityService;
+    private AvailabilityController availabilityController;
 
     @Path("/create")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Availability createAvailability(Availability availability) {
-        return availabilityService.createAvailability(availability);
+        return availabilityController.createAvailability(availability);
     }
 
     @Path("get/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Availability getAvailabilityById(@PathParam("id") int id) {
-        return availabilityService.getAvailabilityById(id);
+        return availabilityController.getAvailabilityById(id);
     }
 
     @Path("get-all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Availability> getAllAvailability() {
-        return availabilityService.getAllAvailability();
+        return availabilityController.getAllAvailability();
     }
 
     @Path("/update")
@@ -43,14 +43,14 @@ public class AvailabilityRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Availability updateAvailability(Availability availability) {
-        return availabilityService.updateAvailability(availability);
+        return availabilityController.updateAvailability(availability);
     }
 
     @Path("/delete")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public void deleteAvailability(@QueryParam("availabilityId") int id) {
-        availabilityService.deleteAvailability(id);
+        availabilityController.deleteAvailability(id);
     }
 
 }
