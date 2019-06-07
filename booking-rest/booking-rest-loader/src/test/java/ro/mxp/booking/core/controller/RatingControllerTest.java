@@ -44,7 +44,7 @@ public class RatingControllerTest {
         rating.setComment("commentTest");
         Client client = new Client();
         client.setName("clientName");
-        client.setPhone("0000000123");
+        client.setPhone("0000123456");
         client.setMail("client@client.com");
         clientController.createClient(client);
         rating.setClient(client);
