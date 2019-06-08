@@ -21,7 +21,7 @@ public class BookingController {
         return bookingService.getBookingById(id);
     }
 
-    public List getAllBooking() {
+    public List<Booking> getAllBooking() {
         return bookingService.getAllBooking();
     }
 

@@ -21,7 +21,7 @@ public class HostController {
         return hostService.getHostById(id);
     }
 
-    public List getAllHost() {
+    public List<Host> getAllHost() {
         return hostService.getAllHost();
     }
 

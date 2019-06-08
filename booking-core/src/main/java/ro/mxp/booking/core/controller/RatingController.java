@@ -21,7 +21,7 @@ public class RatingController {
         return ratingService.getRatingById(id);
     }
 
-    public List getAllRating() {
+    public List<Rating> getAllRating() {
         return ratingService.getAllRating();
     }
 

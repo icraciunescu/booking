@@ -21,7 +21,7 @@ public class PropertyController {
         return propertyService.getPropertyById(id);
     }
 
-    public List getAllProperty() {
+    public List<Property> getAllProperty() {
         return propertyService.getAllProperty();
     }
 

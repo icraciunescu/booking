@@ -21,7 +21,7 @@ public class PaymentController {
         return paymentService.getPaymentById(id);
     }
 
-    public List getAllPayment() {
+    public List<Payment> getAllPayment() {
         return paymentService.getAllPayment();
     }
 

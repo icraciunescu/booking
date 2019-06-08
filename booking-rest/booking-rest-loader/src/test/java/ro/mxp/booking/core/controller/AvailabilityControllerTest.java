@@ -117,4 +117,23 @@ public class AvailabilityControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    @Rollback(false)
+    public void testFindAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(2019, Calendar.MAY, 02);
+        Date fromDate = calendar.getTime();
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(0);
+        calendar1.set(2019, Calendar.MAY, 28);
+        Date toDate = calendar1.getTime();
+        List<Availability> availabilityList = availabilityController
+                .findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
+        int actual = availabilityList.size();
+        int expected = 2;
+        System.out.println(availabilityList.toString());
+        Assert.assertEquals(expected, actual);
+    }
+
 }

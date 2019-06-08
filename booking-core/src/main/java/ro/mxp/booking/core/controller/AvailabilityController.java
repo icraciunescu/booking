@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.service.AvailabilityService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class AvailabilityController {
         return availabilityService.getAvailabilityById(id);
     }
 
-    public List getAllAvailability() {
+    public List<Availability> getAllAvailability() {
         return availabilityService.getAllAvailability();
     }
 
@@ -31,6 +32,10 @@ public class AvailabilityController {
 
     public void deleteAvailability(int id) {
         availabilityService.deleteAvailability(id);
+    }
+
+    public List<Availability> findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
+        return availabilityService.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
 }
