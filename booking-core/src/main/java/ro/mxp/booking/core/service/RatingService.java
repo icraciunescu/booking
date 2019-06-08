@@ -8,7 +8,7 @@ public interface RatingService {
 
     Rating createRating(Rating rating);
     Rating getRatingById(int id);
-    List getAllRating();
+    List<Rating> getAllRating();
     Rating updateRating(Rating rating);
     void deleteRating(int id);
 

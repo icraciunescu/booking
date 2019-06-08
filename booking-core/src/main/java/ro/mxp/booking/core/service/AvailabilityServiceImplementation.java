@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.repository.AvailabilityRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("availabilityServiceImplementation")
@@ -25,7 +26,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
     }
 
     @Override
-    public List getAllAvailability() {
+    public List<Availability> getAllAvailability() {
         return availabilityRepository.findAll();
     }
 
@@ -38,6 +39,11 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
     @Override
     public void deleteAvailability(int id) {
         availabilityRepository.delete(id);
+    }
+
+    @Override
+    public List<Availability> findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
+        return availabilityRepository.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
     }
 
 }

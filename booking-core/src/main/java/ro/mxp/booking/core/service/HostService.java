@@ -8,7 +8,7 @@ public interface HostService {
 
     Host createHost(Host host);
     Host getHostById(int id);
-    List getAllHost();
+    List<Host> getAllHost();
     Host updateHost(Host host);
     void deleteHost(int id);
 

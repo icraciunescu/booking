@@ -8,7 +8,7 @@ public interface ClientService {
 
     Client createClient(Client client);
     Client getClientById(int id);
-    List getAllClient();
+    List<Client> getAllClient();
     Client updateClient(Client client);
     void deleteClient(int id);
 

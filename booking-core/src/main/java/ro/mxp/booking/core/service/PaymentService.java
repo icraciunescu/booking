@@ -8,7 +8,7 @@ public interface PaymentService {
 
     Payment createPayment(Payment payment);
     Payment getPaymentById(int id);
-    List getAllPayment();
+    List<Payment> getAllPayment();
     Payment updatePayment(Payment payment);
     void deletePayment(int id);
 

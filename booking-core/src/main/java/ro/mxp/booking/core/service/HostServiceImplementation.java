@@ -25,7 +25,7 @@ public class HostServiceImplementation implements HostService {
     }
 
     @Override
-    public List getAllHost() {
+    public List<Host> getAllHost() {
         return hostRepository.findAll();
     }
 

@@ -8,7 +8,7 @@ public interface BookingService {
 
     Booking createBooking(Booking booking);
     Booking getBookingById(int id);
-    List getAllBooking();
+    List<Booking> getAllBooking();
     Booking updateBooking(Booking booking);
     void deleteBooking(int id);
 

@@ -25,7 +25,7 @@ public class PropertyServiceImplementation implements PropertyService {
     }
 
     @Override
-    public List getAllProperty() {
+    public List<Property> getAllProperty() {
         return propertyRepository.findAll();
     }
 

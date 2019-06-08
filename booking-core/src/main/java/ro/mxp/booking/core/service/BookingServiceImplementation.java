@@ -25,7 +25,7 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public List getAllBooking() {
+    public List<Booking> getAllBooking() {
         return bookingRepository.findAll();
     }
 

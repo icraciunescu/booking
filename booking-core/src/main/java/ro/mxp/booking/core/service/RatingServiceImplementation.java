@@ -25,7 +25,7 @@ public class RatingServiceImplementation implements RatingService {
     }
 
     @Override
-    public List getAllRating() {
+    public List<Rating> getAllRating() {
         return ratingRepository.findAll();
     }
 

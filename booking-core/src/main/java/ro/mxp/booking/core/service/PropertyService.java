@@ -8,7 +8,7 @@ public interface PropertyService {
 
     Property createProperty(Property property);
     Property getPropertyById(int id);
-    List getAllProperty();
+    List<Property> getAllProperty();
     Property updateProperty(Property property);
     void deleteProperty(int id);
 

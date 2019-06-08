@@ -25,7 +25,7 @@ public class PaymentServiceImplementation implements PaymentService {
     }
 
     @Override
-    public List getAllPayment() {
+    public List<Payment> getAllPayment() {
         return paymentRepository.findAll();
     }
 
