@@ -146,4 +146,12 @@ public class BookingControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    @Rollback(false)
+    public void testSendBookingMail() {
+        Booking booking = bookingController.getBookingById(2);
+        Availability availability = availabilityController.getAvailabilityById(3);
+        bookingController.sendBookingMail(booking, availability);
+    }
+
 }

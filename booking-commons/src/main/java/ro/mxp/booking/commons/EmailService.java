@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class EmailService {
 
-    public void sendMail(String message, String mailAddress, String subject) {
+    public void sendEmail(String message, String mailAddress, String subject) {
 
         final String userName = "java2Iasi@gmail.com";
         final String password = "JavaIasi2018";
@@ -21,7 +21,7 @@ public class EmailService {
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
 
-        Session session = Session.getInstance(properties, new Authenticator() {
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(userName, password);
@@ -34,9 +34,17 @@ public class EmailService {
             Message message1 = new MimeMessage(session);
             message1.setFrom(new InternetAddress("java2Iasi@gmail.com"));
             message1.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailAddress));
+            message1.setSubject(subject);
+            message1.setText(message);
+
+            Transport.send(message1);
+
+            System.out.println("Done!");
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
 }
+
+

@@ -2,6 +2,7 @@ package ro.mxp.booking.core.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
 import ro.mxp.booking.core.service.BookingService;
 
@@ -31,6 +32,10 @@ public class BookingController {
 
     public void deleteBooking(int id) {
         bookingService.deleteBooking(id);
+    }
+
+    public void sendBookingMail(Booking booking, Availability availability) {
+        bookingService.sendBookingMail(booking, availability);
     }
 
 }
