@@ -1,10 +1,11 @@
-package ro.mxp.booking.core.service;
+package ro.mxp.booking.core.service.implementation;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.mxp.booking.core.entity.Host;
 import ro.mxp.booking.core.repository.HostRepository;
+import ro.mxp.booking.core.service.HostService;
 
 import java.util.List;
 
