@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.mxp.booking.commons.EmailService;
+import ro.mxp.booking.core.controller.AvailabilityController;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
 import ro.mxp.booking.core.enums.RoomType;
@@ -24,7 +25,7 @@ public class BookingServiceImplementation implements BookingService {
     private BookingRepository bookingRepository;
 
     @Autowired
-    private AvailabilityService availabilityService;
+    private AvailabilityController availabilityController;
 
     private EmailService emailService = new EmailService();
 
@@ -80,7 +81,7 @@ public class BookingServiceImplementation implements BookingService {
 
         String subject = "Room reservation for " + booking.getClient().getName();
 
-        int size =availabilityService
+        int size =availabilityController
                 .findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(), booking.getCheckOut())
                 .size();
 
@@ -89,6 +90,7 @@ public class BookingServiceImplementation implements BookingService {
             emailService.sendEmail(nonAvailabilityMessage, mailAddress, subject);
         } else {
             emailService.sendEmail(message, mailAddress, subject);
+            availabilityController.availabilityAfterBooking(booking);
         }
 
     }

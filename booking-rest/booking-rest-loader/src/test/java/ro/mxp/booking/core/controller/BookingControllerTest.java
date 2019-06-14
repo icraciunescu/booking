@@ -149,8 +149,8 @@ public class BookingControllerTest {
     @Test
     @Rollback(false)
     public void testSendBookingMail() {
-        Booking booking = bookingController.getBookingById(2);
-        Availability availability = availabilityController.getAvailabilityById(3);
+        Booking booking = bookingController.getBookingById(4);
+        Availability availability = availabilityController.getAvailabilityById(7);
         bookingController.sendBookingMail(booking, availability);
     }
 

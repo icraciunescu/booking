@@ -1,6 +1,7 @@
 package ro.mxp.booking.core.service;
 
 import ro.mxp.booking.core.entity.Availability;
+import ro.mxp.booking.core.entity.Booking;
 
 import java.util.Date;
 import java.util.List;
@@ -14,5 +15,7 @@ public interface AvailabilityService {
     void deleteAvailability(int id);
 
     List<Availability> findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate);
+
+    void availabilityAfterBooking(Booking booking);
 
 }
