@@ -1,5 +1,6 @@
 package ro.mxp.booking.core.controller;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import ro.mxp.booking.core.entity.Availability;
@@ -14,8 +15,31 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    public Booking createBooking(Booking booking) {
-        return bookingService.createBooking(booking);
+    @Autowired
+    private AvailabilityController availabilityController;
+
+    public Booking createBooking(@NotNull Booking booking) {
+        Booking bookingReturn;
+        bookingReturn = booking;
+        List<Availability> availabilityList =
+                availabilityController.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(), booking.getCheckOut());
+        if (availabilityList != null) {
+            for (Availability availability : availabilityList) {
+                int x;
+                x = availability.getId();
+                Availability bookingAvailability = booking.getAvailability();
+                if (bookingAvailability == availabilityController.getAvailabilityById(x)) {
+                    System.out.println("I find availabilities");
+                    System.out.println("availability id = " + x);
+                    bookingReturn = booking;
+                    bookingService.createBooking(bookingReturn);
+                    availabilityController.availabilityAfterBooking(booking);
+                } else {
+                    System.out.println("I do not find availabilities");
+                    bookingReturn = null;
+                }
+            }
+        } return bookingReturn;
     }
 
     public Booking getBookingById(int id) {

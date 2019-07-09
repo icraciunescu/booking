@@ -3,6 +3,7 @@ package ro.mxp.booking.core.service.implementation;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.mxp.booking.commons.DateUtil;
 import ro.mxp.booking.core.controller.AvailabilityController;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
@@ -53,43 +54,48 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
     }
 
     @Override
-    public void availabilityAfterBooking(Booking booking) {
+    public void availabilityAfterBooking(@NotNull Booking booking) {
+        Availability availabilityBooking = booking.getAvailability();
         Date fromBooking = booking.getCheckIn();
         Date toBooking = booking.getCheckOut();
-        List<Availability> availabilityBookingList =
-                findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromBooking, toBooking);
-        for (Availability availabilityBooking : availabilityBookingList) {
-            if (availabilityBooking.getProperty().equals(booking.getProperty())) {
-                boolean isFound = false;
-                if (availabilityBooking.getFromDate().compareTo(fromBooking) < 0) {
-                    Availability newAvailability = new Availability();
-                    newAvailability.setProperty(availabilityBooking.getProperty());
-                    newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
-                    newAvailability.setPriceSingle(availabilityBooking.getPriceSingle());
-                    newAvailability.setPriceDouble(availabilityBooking.getPriceDouble());
-                    newAvailability.setRoomType(availabilityBooking.getRoomType());
-                    newAvailability.setFromDate(availabilityBooking.getFromDate());
-                    newAvailability.setToDate(fromBooking);
-                    availabilityController.createAvailability(newAvailability);
-                    isFound = true;
-                }
-                if (availabilityBooking.getToDate().compareTo(toBooking) > 0) {
-                    Availability newAvailability = new Availability();
-                    newAvailability.setProperty(availabilityBooking.getProperty());
-                    newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
-                    newAvailability.setPriceSingle(availabilityBooking.getPriceSingle());
-                    newAvailability.setPriceDouble(availabilityBooking.getPriceDouble());
-                    newAvailability.setRoomType(availabilityBooking.getRoomType());
-                    newAvailability.setFromDate(toBooking);
-                    newAvailability.setToDate(availabilityBooking.getToDate());
-                    isFound = true;
-                }
-                if(isFound) {
-                    System.out.println("availabilityController.deleteAvailability(availabilityBooking.getId())");
-                    // availabilityController.deleteAvailability(availabilityBooking.getId());
-                }
+        Date fromBookingExtractOneDay = DateUtil.addDays(fromBooking,-1);
+        Date toBookingAddOneDay = DateUtil.addDays(toBooking,1);
+        boolean isFound = false;
+        if (availabilityBooking.getFromDate().compareTo(fromBooking) < 0) {
+            isFound = true;
+            if(fromBooking.compareTo(fromBookingExtractOneDay) < 0) {
+                Availability newAvailability = new Availability();
+                newAvailability.setProperty(availabilityBooking.getProperty());
+                newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
+                newAvailability.setPriceSingle(availabilityBooking.getPriceSingle());
+                newAvailability.setPriceDouble(availabilityBooking.getPriceDouble());
+                newAvailability.setRoomType(availabilityBooking.getRoomType());
+                newAvailability.setFromDate(availabilityBooking.getFromDate());
+                newAvailability.setToDate(fromBookingExtractOneDay);
+                availabilityController.createAvailability(newAvailability);
             }
         }
+        if (availabilityBooking.getToDate().compareTo(toBooking) > 0) {
+            isFound = true;
+            if(toBookingAddOneDay.compareTo(toBooking) > 0) {
+                Availability newAvailability = new Availability();
+                newAvailability.setProperty(availabilityBooking.getProperty());
+                newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
+                newAvailability.setPriceSingle(availabilityBooking.getPriceSingle());
+                newAvailability.setPriceDouble(availabilityBooking.getPriceDouble());
+                newAvailability.setRoomType(availabilityBooking.getRoomType());
+                newAvailability.setFromDate(toBookingAddOneDay);
+                newAvailability.setToDate(availabilityBooking.getToDate());
+                availabilityController.createAvailability(newAvailability);
+            }
+        }
+        if (isFound) {
+            System.out.println("id availability for update = " + availabilityBooking.getId());
+            availabilityBooking.setFromDate(fromBooking);
+            availabilityBooking.setToDate(toBooking);
+            availabilityController.updateAvailability(availabilityBooking);
+            System.out.println("if isFound test ok!");
+        }
     }
-
 }
+

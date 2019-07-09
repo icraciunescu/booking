@@ -9,7 +9,6 @@ import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
 import ro.mxp.booking.core.enums.RoomType;
 import ro.mxp.booking.core.repository.BookingRepository;
-import ro.mxp.booking.core.service.AvailabilityService;
 import ro.mxp.booking.core.service.BookingService;
 
 import java.math.BigDecimal;
@@ -90,7 +89,6 @@ public class BookingServiceImplementation implements BookingService {
             emailService.sendEmail(nonAvailabilityMessage, mailAddress, subject);
         } else {
             emailService.sendEmail(message, mailAddress, subject);
-            availabilityController.availabilityAfterBooking(booking);
         }
 
     }

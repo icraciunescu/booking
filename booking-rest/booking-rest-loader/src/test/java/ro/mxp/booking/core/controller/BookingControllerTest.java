@@ -43,17 +43,17 @@ public class BookingControllerTest {
     private AvailabilityController availabilityController;
 
     @Test
-    @Rollback
+    @Rollback(false)
     public void testCreateBooking() {
         Booking booking = new Booking();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.MAY, 1);
+        calendar.set(2019, Calendar.MAY, 2);
         Date checkIn = calendar.getTime();
         booking.setCheckIn(checkIn);
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.MAY, 15);
+        calendar2.set(2019, Calendar.MAY, 20);
         Date checkOut = calendar2.getTime();
         booking.setCheckOut(checkOut);
         booking.setNumberOfPersons(2);
@@ -77,26 +77,9 @@ public class BookingControllerTest {
         property.setHost(host);
         propertyController.createProperty(property);
         booking.setProperty(property);
-        Availability availability = new Availability();
-        Calendar calendar3 = Calendar.getInstance();
-        calendar3.setTimeInMillis(0);
-        calendar3.set(2019, Calendar.MAY, 1);
-        Date fromDate = calendar3.getTime();
-        availability.setFromDate(fromDate);
-        Calendar calendar4 = Calendar.getInstance();
-        calendar4.setTimeInMillis(0);
-        calendar4.set(2019, Calendar.MAY, 29);
-        Date toDate = calendar4.getTime();
-        availability.setToDate(toDate);
-        availability.setRoomType(String.valueOf(RoomType.DOUBLE));
-        availability.setPriceSingle(new BigDecimal(100));
-        availability.setPriceDouble(new BigDecimal(150));
-        availability.setRoomNumber(2);
-        availability.setProperty(property);
-        availabilityController.createAvailability(availability);
+        Availability availability = availabilityController.getAvailabilityById(3);
         booking.setAvailability(availability);
         bookingController.createBooking(booking);
-        System.out.println(booking.toString());
         Assert.assertNotNull(booking.getClient());
     }
 
@@ -147,10 +130,10 @@ public class BookingControllerTest {
     }
 
     @Test
-    @Rollback(false)
+    @Rollback
     public void testSendBookingMail() {
-        Booking booking = bookingController.getBookingById(4);
-        Availability availability = availabilityController.getAvailabilityById(7);
+        Booking booking = bookingController.getBookingById(3);
+        Availability availability = availabilityController.getAvailabilityById(3);
         bookingController.sendBookingMail(booking, availability);
     }
 
