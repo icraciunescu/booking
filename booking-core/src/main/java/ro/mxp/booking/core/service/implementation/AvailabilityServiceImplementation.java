@@ -63,7 +63,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
         boolean isFound = false;
         if (availabilityBooking.getFromDate().compareTo(fromBooking) < 0) {
             isFound = true;
-            if(fromBooking.compareTo(fromBookingExtractOneDay) < 0) {
+            if(availabilityBooking.getFromDate().compareTo(fromBookingExtractOneDay) < 0) {
                 Availability newAvailability = new Availability();
                 newAvailability.setProperty(availabilityBooking.getProperty());
                 newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
@@ -77,7 +77,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
         }
         if (availabilityBooking.getToDate().compareTo(toBooking) > 0) {
             isFound = true;
-            if(toBookingAddOneDay.compareTo(toBooking) > 0) {
+            if(toBookingAddOneDay.compareTo(availabilityBooking.getToDate()) < 0) {
                 Availability newAvailability = new Availability();
                 newAvailability.setProperty(availabilityBooking.getProperty());
                 newAvailability.setRoomNumber(availabilityBooking.getRoomNumber());
