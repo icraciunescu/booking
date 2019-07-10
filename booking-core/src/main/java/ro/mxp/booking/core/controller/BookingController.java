@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
+import ro.mxp.booking.core.enums.RoomType;
 import ro.mxp.booking.core.service.BookingService;
 
 import java.util.List;
@@ -25,22 +26,29 @@ public class BookingController {
                 availabilityController.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(), booking.getCheckOut());
         if (availabilityList != null) {
             for (Availability availability : availabilityList) {
-                int x;
-                x = availability.getId();
-                Availability bookingAvailability = booking.getAvailability();
-                if (bookingAvailability == availabilityController.getAvailabilityById(x)) {
-                    System.out.println("I find availabilities");
-                    System.out.println("availability id = " + x);
-                    bookingReturn = booking;
-                    bookingService.createBooking(bookingReturn);
-                    availabilityController.availabilityAfterBooking(booking);
-                } else {
-                    System.out.println("I do not find availabilities");
+                if(booking.getRoomType().equals(String.valueOf(RoomType.DOUBLE)) ||
+                        availability.getRoomType().equals(String.valueOf(RoomType.SINGLE))) {
+                    System.out.println("Do not find room type!");
                     bookingReturn = null;
+                } else {
+                    int x;
+                    x = availability.getId();
+                    Availability bookingAvailability = booking.getAvailability();
+                    if (bookingAvailability == availabilityController.getAvailabilityById(x)) {
+                        System.out.println("I find availabilities");
+                        System.out.println("availability id = " + x);
+                        bookingReturn = booking;
+                        bookingService.createBooking(bookingReturn);
+                        availabilityController.availabilityAfterBooking(booking);
+                    } else {
+                        System.out.println("I do not find availabilities");
+                        bookingReturn = null;
+                    }
                 }
             }
         } return bookingReturn;
     }
+
 
     public Booking getBookingById(int id) {
         return bookingService.getBookingById(id);
