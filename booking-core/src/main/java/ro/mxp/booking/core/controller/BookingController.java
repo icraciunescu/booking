@@ -26,9 +26,10 @@ public class BookingController {
                 availabilityController.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(), booking.getCheckOut());
         if (availabilityList != null) {
             for (Availability availability : availabilityList) {
-                if(booking.getRoomType().equals(String.valueOf(RoomType.DOUBLE)) ||
+                if(booking.getRoomType().equals(String.valueOf(RoomType.DOUBLE)) &&
                         availability.getRoomType().equals(String.valueOf(RoomType.SINGLE))) {
                     System.out.println("Do not find room type!");
+                    System.out.println(booking.getRoomType());
                     bookingReturn = null;
                 } else {
                     int x;
@@ -40,6 +41,7 @@ public class BookingController {
                         bookingReturn = booking;
                         bookingService.createBooking(bookingReturn);
                         availabilityController.availabilityAfterBooking(booking);
+                        sendBookingMail(booking, availability);
                     } else {
                         System.out.println("I do not find availabilities");
                         bookingReturn = null;

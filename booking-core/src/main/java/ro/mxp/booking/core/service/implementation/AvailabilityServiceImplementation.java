@@ -7,6 +7,7 @@ import ro.mxp.booking.commons.DateUtil;
 import ro.mxp.booking.core.controller.AvailabilityController;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Booking;
+import ro.mxp.booking.core.enums.Reserved;
 import ro.mxp.booking.core.repository.AvailabilityRepository;
 import ro.mxp.booking.core.service.AvailabilityService;
 
@@ -72,6 +73,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
                 newAvailability.setRoomType(availabilityBooking.getRoomType());
                 newAvailability.setFromDate(availabilityBooking.getFromDate());
                 newAvailability.setToDate(fromBookingExtractOneDay);
+                newAvailability.setReserved(availabilityBooking.getReserved());
                 availabilityController.createAvailability(newAvailability);
             }
         }
@@ -86,6 +88,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
                 newAvailability.setRoomType(availabilityBooking.getRoomType());
                 newAvailability.setFromDate(toBookingAddOneDay);
                 newAvailability.setToDate(availabilityBooking.getToDate());
+                newAvailability.setReserved(availabilityBooking.getReserved());
                 availabilityController.createAvailability(newAvailability);
             }
         }
@@ -93,6 +96,7 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
             System.out.println("id availability for update = " + availabilityBooking.getId());
             availabilityBooking.setFromDate(fromBooking);
             availabilityBooking.setToDate(toBooking);
+            availabilityBooking.setReserved(String.valueOf(Reserved.YES));
             availabilityController.updateAvailability(availabilityBooking);
             System.out.println("if isFound test ok!");
         }

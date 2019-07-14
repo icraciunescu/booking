@@ -43,21 +43,21 @@ public class BookingControllerTest {
     private AvailabilityController availabilityController;
 
     @Test
-    @Rollback
+    @Rollback(false)
     public void testCreateBooking() {
         Booking booking = new Booking();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.MAY, 2);
+        calendar.set(2019, Calendar.MAY, 3);
         Date checkIn = calendar.getTime();
         booking.setCheckIn(checkIn);
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.MAY, 20);
+        calendar2.set(2019, Calendar.MAY, 4);
         Date checkOut = calendar2.getTime();
         booking.setCheckOut(checkOut);
-        booking.setNumberOfPersons(2);
-        booking.setRoomType(String.valueOf(RoomType.DOUBLE));
+        booking.setNumberOfPersons(1);
+        booking.setRoomType(String.valueOf(RoomType.SINGLE));
         booking.setNumberOfRooms(1);
         Client client = new Client();
         client.setName("clientName");
@@ -77,7 +77,7 @@ public class BookingControllerTest {
         property.setHost(host);
         propertyController.createProperty(property);
         booking.setProperty(property);
-        Availability availability = availabilityController.getAvailabilityById(1);
+        Availability availability = availabilityController.getAvailabilityById(3);
         booking.setAvailability(availability);
         bookingController.createBooking(booking);
         Assert.assertNotNull(booking.getClient());

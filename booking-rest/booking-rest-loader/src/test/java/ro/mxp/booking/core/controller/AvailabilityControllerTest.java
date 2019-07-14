@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.mxp.booking.core.entity.Availability;
 import ro.mxp.booking.core.entity.Host;
 import ro.mxp.booking.core.entity.Property;
+import ro.mxp.booking.core.enums.Reserved;
 import ro.mxp.booking.core.enums.RoomType;
 
 import java.math.BigDecimal;
@@ -66,6 +67,7 @@ public class AvailabilityControllerTest {
         property.setHost(host);
         propertyController.createProperty(property);
         availability.setProperty(property);
+        availability.setReserved(String.valueOf(Reserved.NO));
         availabilityController.createAvailability(availability);
         System.out.println(availability.toString());
         Assert.assertNotNull(availability.getProperty());

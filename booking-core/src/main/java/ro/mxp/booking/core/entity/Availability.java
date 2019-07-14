@@ -31,6 +31,9 @@ public class Availability extends BaseEntity {
     @Column(name = "price_single", length = 5, nullable = false)
     private BigDecimal priceSingle;
 
+    @Column(name = "reserved", length = 3, nullable = false)
+    private String reserved;
+
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
     private Property property;
@@ -83,6 +86,14 @@ public class Availability extends BaseEntity {
         this.priceSingle = priceSingle;
     }
 
+    public String getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(String reserved) {
+        this.reserved = reserved;
+    }
+
     public Property getProperty() {
         return property;
     }
@@ -102,12 +113,13 @@ public class Availability extends BaseEntity {
                 Objects.equals(roomType, that.roomType) &&
                 Objects.equals(priceDouble, that.priceDouble) &&
                 Objects.equals(priceSingle, that.priceSingle) &&
+                Objects.equals(reserved, that.reserved) &&
                 Objects.equals(property, that.property);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomNumber, fromDate, toDate, roomType, priceDouble, priceSingle, property);
+        return Objects.hash(roomNumber, fromDate, toDate, roomType, priceDouble, priceSingle, reserved, property);
     }
 
     @Override
@@ -119,6 +131,7 @@ public class Availability extends BaseEntity {
                 ", roomType='" + roomType + '\'' +
                 ", priceDouble=" + priceDouble +
                 ", priceSingle=" + priceSingle +
+                ", reserved='" + reserved + '\'' +
                 ", property=" + property +
                 '}';
     }
