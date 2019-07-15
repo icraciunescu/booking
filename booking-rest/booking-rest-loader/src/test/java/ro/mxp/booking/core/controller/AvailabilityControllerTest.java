@@ -120,11 +120,11 @@ public class AvailabilityControllerTest {
     }
 
     @Test
-    @Rollback(false)
+    @Rollback
     public void testFindAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.MAY, 02);
+        calendar.set(2019, Calendar.MAY, 13);
         Date fromDate = calendar.getTime();
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTimeInMillis(0);
@@ -133,7 +133,7 @@ public class AvailabilityControllerTest {
         List<Availability> availabilityList = availabilityController
                 .findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);
         int actual = availabilityList.size();
-        int expected = 2;
+        int expected = 1;
         System.out.println(availabilityList.toString());
         Assert.assertEquals(expected, actual);
     }

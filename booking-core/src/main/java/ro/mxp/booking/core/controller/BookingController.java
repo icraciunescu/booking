@@ -41,7 +41,6 @@ public class BookingController {
                         bookingReturn = booking;
                         bookingService.createBooking(bookingReturn);
                         availabilityController.availabilityAfterBooking(booking);
-                        sendBookingMail(booking, availability);
                     } else {
                         System.out.println("I do not find availabilities");
                         bookingReturn = null;
