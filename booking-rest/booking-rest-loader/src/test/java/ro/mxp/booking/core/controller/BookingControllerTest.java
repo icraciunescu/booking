@@ -31,10 +31,6 @@ public class BookingControllerTest {
     private ClientController clientController;
 
     @Autowired
-    @Qualifier("hostController")
-    private HostController hostController;
-
-    @Autowired
     @Qualifier("propertyController")
     private PropertyController propertyController;
 
