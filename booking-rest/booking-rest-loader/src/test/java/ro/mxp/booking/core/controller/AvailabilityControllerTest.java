@@ -43,15 +43,15 @@ public class AvailabilityControllerTest {
         Availability availability = new Availability();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019,Calendar.MAY, 01);
+        calendar.set(2019,Calendar.JUNE, 01);
         Date fromDate = calendar.getTime();
         availability.setFromDate(fromDate);
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019,Calendar.MAY, 28);
+        calendar2.set(2019,Calendar.JUNE, 30);
         Date toDate = calendar2.getTime();
         availability.setToDate(toDate);
-        availability.setRoomType(String.valueOf(RoomType.SINGLE));
+        availability.setRoomType(String.valueOf(RoomType.DOUBLE));
         availability.setRoomNumber(1);
         availability.setPriceSingle(new BigDecimal(100));
         availability.setPriceDouble(new BigDecimal(100));

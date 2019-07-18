@@ -26,31 +26,34 @@ public class BookingController {
                 availabilityController.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(booking.getCheckIn(), booking.getCheckOut());
         if (availabilityList != null) {
             for (Availability availability : availabilityList) {
-                if(booking.getRoomType().equals(String.valueOf(RoomType.DOUBLE)) &&
-                        availability.getRoomType().equals(String.valueOf(RoomType.SINGLE))) {
-                    System.out.println("Do not find room type!");
-                    System.out.println(booking.getRoomType());
-                    bookingReturn = null;
-                } else {
+                int find = 0;
+                do {
                     int x;
                     x = availability.getId();
                     Availability bookingAvailability = booking.getAvailability();
                     if (bookingAvailability == availabilityController.getAvailabilityById(x)) {
-                        System.out.println("I find availabilities");
-                        System.out.println("availability id = " + x);
-                        bookingReturn = booking;
-                        bookingService.createBooking(bookingReturn);
-                        bookingService.sendBookingMail(booking, availability);
-                        availabilityController.availabilityAfterBooking(booking);
+                        if (booking.getRoomType().equals(String.valueOf(RoomType.DOUBLE)) &&
+                                availability.getRoomType().equals(String.valueOf(RoomType.SINGLE))) {
+                            System.out.println("Do not find room type!");
+                            System.out.println(booking.getRoomType());
+                            bookingReturn = null;
+                        } else {
+                            System.out.println("I find availabilities");
+                            System.out.println("availability id = " + x);
+                            bookingReturn = booking;
+                            bookingService.createBooking(bookingReturn);
+                            bookingService.sendBookingMail(booking, availability);
+                            find = find + 1;
+                            availabilityController.availabilityAfterBooking(booking);
+                        }
                     } else {
                         System.out.println("I do not find availabilities");
                         bookingReturn = null;
                     }
-                }
+                } while (find == 1);
             }
         } return bookingReturn;
     }
-
 
     public Booking getBookingById(int id) {
         return bookingService.getBookingById(id);
