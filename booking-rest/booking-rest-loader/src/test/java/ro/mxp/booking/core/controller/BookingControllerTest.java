@@ -43,29 +43,31 @@ public class BookingControllerTest {
     private AvailabilityController availabilityController;
 
     @Test
-    @Rollback(false)
+    @Rollback
     public void testCreateBooking() {
         Booking booking = new Booking();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
-        calendar.set(2019, Calendar.JUNE, 3);
+        calendar.set(2019, Calendar.JUNE, 10);
         Date checkIn = calendar.getTime();
         booking.setCheckIn(checkIn);
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(0);
-        calendar2.set(2019, Calendar.JUNE, 7);
+        calendar2.set(2019, Calendar.JUNE, 14);
         Date checkOut = calendar2.getTime();
         booking.setCheckOut(checkOut);
         booking.setNumberOfPersons(1);
         booking.setRoomType(String.valueOf(RoomType.SINGLE));
         booking.setNumberOfRooms(1);
+        Availability availability = availabilityController.getAvailabilityById(12);
+        booking.setAvailability(availability);
         Client client = new Client();
         client.setName("clientName");
         client.setPhone("0000123456");
         client.setMail("icraciunescu@hotmail.com");
         clientController.createClient(client);
         booking.setClient(client);
-        Property property = new Property();
+        Property property = propertyController.getPropertyById(availability.getProperty().getId());
         property.setName("propertyName");
         property.setAddress("propertyAddress");
         property.setMail("property@property.com");
@@ -77,8 +79,6 @@ public class BookingControllerTest {
         property.setHost(host);
         propertyController.createProperty(property);
         booking.setProperty(property);
-        Availability availability = availabilityController.getAvailabilityById(10);
-        booking.setAvailability(availability);
         bookingController.createBooking(booking);
         Assert.assertNotNull(booking.getClient());
     }
