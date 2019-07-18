@@ -40,6 +40,7 @@ public class BookingController {
                         System.out.println("availability id = " + x);
                         bookingReturn = booking;
                         bookingService.createBooking(bookingReturn);
+                        bookingService.sendBookingMail(booking, availability);
                         availabilityController.availabilityAfterBooking(booking);
                     } else {
                         System.out.println("I do not find availabilities");
