@@ -19,6 +19,13 @@ public class BookingController {
     @Autowired
     private AvailabilityController availabilityController;
 
+    /**
+     * run the code until booking.getAvailability is equal to availability.getId
+     * test RoomType
+     * if the conditions are respected create the booking and send it to the client
+     * @param booking
+     * @return the booking
+     */
     public Booking createBooking(@NotNull Booking booking) {
         Booking bookingReturn;
         bookingReturn = booking;

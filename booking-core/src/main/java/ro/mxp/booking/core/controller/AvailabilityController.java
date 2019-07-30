@@ -38,6 +38,13 @@ public class AvailabilityController {
         availabilityService.deleteAvailability(id);
     }
 
+    /**
+     * test the interval between two dates
+     * test if the Availability is not reserved for another Client
+     * @param fromDate
+     * @param toDate
+     * @return Availability if the conditions are respected
+     */
     public List<Availability> findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(Date fromDate, Date toDate) {
         List<Availability> availabilityList;
         availabilityList = availabilityService.findAvailabilityByFromDateLessThanEqualAndToDateGreaterThanEqual(fromDate, toDate);

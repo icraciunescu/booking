@@ -55,6 +55,13 @@ public class AvailabilityServiceImplementation implements AvailabilityService {
     }
 
     @Override
+
+    /**
+     * this decomposes the record Availability from DB into two or three new records of which one has Reserved.YES
+     * (where checkIn is equal to fromDate and checkOut is equal to toDate)
+     * or change Reserved.NO in Reserved.YES
+     * (if checkIn is equal to fromDate and checkOut is equal to toDate).
+     */
     public void availabilityAfterBooking(@NotNull Booking booking) {
         Availability availabilityBooking = booking.getAvailability();
         Date fromBooking = booking.getCheckIn();
